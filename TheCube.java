@@ -326,7 +326,7 @@ public class TheCube {
                 System.out.println("Welcome to the Great Cube of Rubik's");
                 System.out.println("Moves To Solve: " + String.join(" ", moves));
                 System.out.println("Move Options: U, D, R, L, F, B, add ' to move counterclockwise");
-                System.out.println("Q to Quit, S to Show Cube");
+                System.out.println("Q to Quit, E to Show Cube");
                 System.out.println("Input Move:");
                 input = reader.readLine();
             } else{
@@ -423,6 +423,17 @@ public class TheCube {
                 RubikCube.BPrime();
                 RubikCube.showcube();
                 moves.add("B");
+
+                case "q":
+                case "Q":
+                proceed = false;
+                break;
+
+                case "e":
+                case "E":
+                RubikCube.showcube();
+                break;
+
             }
         }
     }
