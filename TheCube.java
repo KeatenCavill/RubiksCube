@@ -301,6 +301,7 @@ public class TheCube {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         
         TheCube  RubikCube = new TheCube();
+    
 
         boolean argsCheck = false;
         int argsRunIndex = 0;
@@ -325,7 +326,7 @@ public class TheCube {
                 System.out.println("Welcome to the Great Cube of Rubik's");
                 System.out.println("Moves To Solve: " + String.join(" ", moves));
                 System.out.println("Move Options: U, D, R, L, F, B, add ' to move counterclockwise");
-                System.out.println("Q to Quit");
+                System.out.println("Q to Quit, S to Show Cube");
                 System.out.println("Input Move:");
                 input = reader.readLine();
             } else{
@@ -344,93 +345,85 @@ public class TheCube {
                 case "U":
                  RubikCube.U();
                 RubikCube.showcube();
-                moves.add("U");
+                moves.add("U'");
                 break;
                 
                 case "u'":
                 case "U'":
                 RubikCube.UPrime();
                 RubikCube.showcube();
-                moves.add("U'");
+                moves.add("U");
                 break;
 
                 case"d":
                 case "D":
                 RubikCube.D();
                 RubikCube.showcube();
-                moves.add("D");
+                moves.add("D'");
                 break;
 
                 case "d'":
                 case "D'":
                 RubikCube.DPrime();
                 RubikCube.showcube();
-                moves.add("D'");
+                moves.add("D");
                 break;
 
                 case "r":
                 case "R":
                 RubikCube.R();
                 RubikCube.showcube();
-                moves.add("R");
+                moves.add("R'");
                 break;
 
                 case"r'":
                 case "R'":
                 RubikCube.RPrime();
                 RubikCube.showcube();
-                moves.add("R'");
+                moves.add("R");
                 break;
 
                 case "l":
                 case "L":
                 RubikCube.L();
                 RubikCube.showcube();
-                moves.add("L");
+                moves.add("L'");
                 break;
 
                 case "l'":
                 case "L'":
                 RubikCube.LPime();
                 RubikCube.showcube();
-                moves.add("L'");
+                moves.add("L");
                 break;
 
                 case "f":
                 case "F":
                 RubikCube.F();
                 RubikCube.showcube();
-                moves.add("F");
+                moves.add("F'");
                 break;
 
                 case "f'":
                 case "F'":
                 RubikCube.FPrime();
                 RubikCube.showcube();
-                moves.add("F'");
+                moves.add("F");
                 break;
 
                 case "b":
                 case "B":
                 RubikCube.B();
                 RubikCube.showcube();
-                moves.add("B");
+                moves.add("B'");
                 break;
 
                 case "b'":
                 case "B'":
                 RubikCube.BPrime();
                 RubikCube.showcube();
-                moves.add("B'");
-                break;
-
-                case "q":
-                case "Q":
-                proceed = false;
-                break;
-
+                moves.add("B");
             }
         }
-
     }
 }   
