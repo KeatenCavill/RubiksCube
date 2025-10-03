@@ -1,8 +1,7 @@
 package RubiksCube;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class TheCube {
 
@@ -295,144 +294,141 @@ public class TheCube {
     }
     
 
-    public static void main(String[] args)
-    throws IOException   
+    static Stack<String> Moves = new Stack<>();
+
+    // creates solution in stack
+    static void solve(Stack<String> Moves){
+        while(!Moves.empty()){
+            String move = Moves.pop();
+            String reverse = (move.contains("'")) ? move.substring(0, 1) : move + "'";
+            System.out.print(reverse + " ");
+        }
+    }
+
+    //creates solution in arraylist
+    static void Solve(Stack<String> Moves, ArrayList<String> Solution){
+        while(!Moves.empty()){
+            String move = Moves.pop();
+            String reverse = (move.contains("'")) ? move.substring(0, 1) : move + "'";
+            System.out.print(reverse + " ");
+            Solution.add(reverse);
+        }
+    }
+
+
+
+    public static void main(String[] args)  
     {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         
         TheCube  RubikCube = new TheCube();
+        Scanner scn = new Scanner(System.in);
+        
     
-
-        boolean argsCheck = false;
         int argsRunIndex = 0;
-        ArrayList<String> moves = new ArrayList<>();
 
-        if(args.length > 0){
-            argsCheck = true;
-            for(String arg : args){
-                moves.add(arg);
-            }
-        }
+        ArrayList<String> solution = new ArrayList<>();
 
         boolean proceed = true;
 
+        System.out.println();
+        System.out.println("WELLCOME TO THE CUBE");
+        System.out.println("Use U, D, R, L, F, B, to move the cube clockwise, add ' to move counterclockwise");
+        System.out.println("Q to quit, S to see solution, and E to show cube and inputs again");
+        System.out.println();
+
         while(proceed){
             String input;
-           
 
-            //main loop
-            if(!argsCheck){
-        
-                System.out.println("Welcome to the Great Cube of Rubik's");
-                System.out.println("Moves To Solve: " + String.join(" ", moves));
-                System.out.println("Move Options: U, D, R, L, F, B, add ' to move counterclockwise");
-                System.out.println("Q to Quit, E to Show Cube");
-                System.out.println("Input Move:");
-                input = reader.readLine();
+            if(args.length > argsRunIndex){
+                input = args[argsRunIndex];
+                argsRunIndex++;
             } else{
-                if(argsRunIndex == args.length){
-                  argsCheck = false;
-                  
-                  return;
-                }else{
-                    input = moves.get(argsRunIndex);
-                    argsRunIndex++;
-                }
+                RubikCube.showcube();
+                input = scn.nextLine();
             }
+           
             // all possible imputs
-            switch(input){
-                case "u":
+            switch(input.toUpperCase()){
                 case "U":
                  RubikCube.U();
-                RubikCube.showcube();
-                moves.add("U'");
+                Moves.push(input.toUpperCase());
                 break;
                 
-                case "u'":
                 case "U'":
                 RubikCube.UPrime();
-                RubikCube.showcube();
-                moves.add("U");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case"d":
                 case "D":
                 RubikCube.D();
-                RubikCube.showcube();
-                moves.add("D'");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "d'":
                 case "D'":
                 RubikCube.DPrime();
-                RubikCube.showcube();
-                moves.add("D");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "r":
                 case "R":
                 RubikCube.R();
-                RubikCube.showcube();
-                moves.add("R'");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case"r'":
                 case "R'":
                 RubikCube.RPrime();
-                RubikCube.showcube();
-                moves.add("R");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "l":
                 case "L":
                 RubikCube.L();
-                RubikCube.showcube();
-                moves.add("L'");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "l'":
                 case "L'":
                 RubikCube.LPime();
-                RubikCube.showcube();
-                moves.add("L");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "f":
                 case "F":
                 RubikCube.F();
-                RubikCube.showcube();
-                moves.add("F'");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "f'":
                 case "F'":
                 RubikCube.FPrime();
-                RubikCube.showcube();
-                moves.add("F");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "b":
                 case "B":
                 RubikCube.B();
-                RubikCube.showcube();
-                moves.add("B'");
+                Moves.push(input.toUpperCase());
                 break;
 
-                case "b'":
                 case "B'":
                 RubikCube.BPrime();
-                RubikCube.showcube();
-                moves.add("B");
+                Moves.push(input.toUpperCase());
 
-                case "q":
-                case "Q":
+                case "Q": // quits
                 proceed = false;
+                scn.close();
                 break;
 
-                case "e":
-                case "E":
-                RubikCube.showcube();
+                case "E": // prints the cube and inputs
+                System.out.println();
+                System.out.println("Use U, D, R, L, F, B, to move the cube clockwise, add ' to move counterclockwise");
+                System.out.println("Q to quit, S to see solution, and E to show cube and inputs again");
+                System.out.println();
                 break;
+
+                case "S": //prints the solution
+                System.out.println();
+                System.out.println("Solution: ");
+                Solve(Moves, solution);
+                System.out.println();
+                System.out.println();
+                break;
+
+
 
             }
         }
